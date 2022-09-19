@@ -1,0 +1,23 @@
+.square {
+  border: 0.5px solid lightgrey;
+  width: auto;
+  height: auto;
+  margin: none;
+  padding: none;
+}
+
+.square-container {
+  width: 960px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hovered {
+  background-color: black;
+}
+
+.number-squares {
+  text-align: center;
+}
+
