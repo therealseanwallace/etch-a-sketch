@@ -1,8 +1,8 @@
-let squareSize = 56;
-let numberSquares = 0;
+let squareSize = 0;
+let numberofSquares = 16;
 
 (function() {
-  createSquares();
+  calculateSquareSizing(numberofSquares);
   addListenerToButton();
 }());
 
@@ -16,17 +16,25 @@ function deleteSquares() {
 
 function createSquares(numberOfSquares, width) {
   deleteSquares();    
+  
   if (numberOfSquares !== 'undefined') {
-    for (let i = 0; i < numberOfSquares * numberOfSquares; i++ ) {
+    for (let i = 0; i < (numberOfSquares * numberOfSquares); i++ ) {
       drawASquare();
+      assignIDs(i);
     }
   } else {
     for (let i = 0; i < 256; i++) {
       drawASquare();
+      assignIDs(i);
     }
   } 
-  
   applySquareSizing(width);
+}
+
+function assignIDs(id) {
+  const nodes = document.querySelectorAll(".square");
+  const last = nodes[nodes.length - 1];
+  last.setAttribute('id', `square-${id}`);
 }
 
 function calculateSquareSizing(numberSquares) {
@@ -67,19 +75,25 @@ function addListenerToButton() {
 }
 
 function getValue(e) {
-  numberSquares = window.prompt("How many squares would you like to draw? I will draw an a * a grid.");
+  numberSquares = window.prompt("How many squares would you like to draw? (max: 100x100)");
   calculateSquareSizing(numberSquares);
-  console.log("Getting value! Value is", numberSquares);
 }
 
 function fillSquare(e) {
+  const sqID = e.target.id;
+  const sqToShade = document.getElementById(`${sqID}`);
+  const sqStyle = getComputedStyle(sqToShade); 
+  if (sqStyle.opacity < 1) {
+    let opacityNum = Number(sqStyle.opacity);
+    const newOpacity = opacityNum + 0.05;
+    e.target.style.opacity = `${newOpacity}`;
+  }
   
-  let squareColor = generateColor();
-  e.target.style.background = `${squareColor}`;
-  console.log("Adding color!");
+ 
+  
 }
 
-function generateColor() {
+/*function generateColor() {
   const r = getRndInteger(1, 255);
   const g = getRndInteger(1, 255);
   const b = getRndInteger(1, 255);
@@ -89,4 +103,4 @@ function generateColor() {
   
   function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
-}
+}*/

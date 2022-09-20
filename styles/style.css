@@ -1,9 +1,14 @@
+* {
+  box-sizing: border-box;
+}
 .square {
   border: 0.5px solid lightgrey;
   width: auto;
   height: auto;
   margin: none;
   padding: none;
+  background-color: black;
+  opacity: 0.0;
 }
 
 .square-container {
@@ -11,13 +16,18 @@
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  
 }
 
-.hovered {
-  background-color: black;
+
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .number-squares {
-  text-align: center;
+  margin: 40px;
 }
 
