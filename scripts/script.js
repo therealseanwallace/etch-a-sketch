@@ -76,6 +76,10 @@ function addListenerToButton() {
 
 function getValue(e) {
   numberSquares = window.prompt("How many squares would you like to draw? (max: 100x100)");
+  if (numberSquares.length == 0) {
+    numberSquares = 16;
+  }
+  console.log(numberSquares.length);
   calculateSquareSizing(numberSquares);
 }
 
